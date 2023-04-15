@@ -1,0 +1,84 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <!-- Meta tags-->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" /> <!-- tf is that ? -->
+    <meta name="description"
+        content="Bienvenue sur la page d'accueil de Les Petits Plats, le site officiel pour rechercher des recettes culinaires!">
+    <meta name="color-scheme" content="dark light" />
+    <meta name="robots" content="index, follow">
+
+    <!-- Title -->
+    <title>Les Petits Plats - Page de recherche</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css" />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700;900&family=DM+Sans:wght@400;500;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Icons -->
+    <script src="https://kit.fontawesome.com/342df027c2.js" crossorigin="anonymous"></script>
+
+    <!-- Page logo -->
+    <link rel="icon" type="svg" href="assets/logos/icon-logo.svg" />
+
+    <!-- JS -->
+    <!-- APIs   -->
+    <script defer src="./js/Apis/recipes-api.js"></script>
+
+    <!-- Utilities: update this shit   -->
+    <script defer src="./js/Utils/create-tag.js"></script>
+    <script defer src="./js/Utils/dropdown-menu-functions.js"></script>
+    <script defer src="./js/Utils/search-recipe-functions.js"></script>
+    <script defer src="./js/Utils/url-functions.js"></script>
+
+    <!-- Templates: I have no ideas what those are  -->
+    <script defer src="./js/Templates/recipe-card-template.js"></script>
+    <script defer src="./js/Templates/tag-template.js"></script>
+    <script defer src="./js/Templates/dropdown-item-template.js"></script>
+
+    <!--  Page: same  -->
+    <script defer src="./js/pages/index.js"></script>
+
+</head>
+
+<body>
+    <header>
+        <img type="image/png" src="assets/logos/icon-logo.svg">
+        <h1 class="header__title" id="top">Les petits plats</h1>
+    </header>
+    <main>
+        <section class="barreDeRecherche">
+            <form class="FormBarreDeRecherche" action="#">
+                <input type="text" class="inputRecherche" placeholder="Rechercher une recette" autocomplete="off">
+                <label for="search">
+                    <img alt="image d'une loupe" src="assets/logos/loupe.svg">
+                </label>
+            </form>
+        </section>
+
+        <section class="menusDeroulants">
+            <div class="elementTri ingredients">
+            <p>Ingredients</p>
+            <i class="fa-solid fa-angle-up arrow"></i>
+            </div>
+            <div class="elementTri appareils">
+                <p>Appareils</p>
+                <i class="fa-solid fa-angle-up arrow"></i>
+            </div>
+            <div class="elementTri ustensiles">
+                <p>Ustensiles</p>
+                <i class="fa-solid fa-angle-up arrow"></i>
+            </div>
+        </section>
+    </main>
+</body>
