@@ -4,19 +4,18 @@
 
 <head>
     <!-- Meta tags-->
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" /> <!-- tf is that ? -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description"
         content="Bienvenue sur la page d'accueil de Les Petits Plats, le site officiel pour rechercher des recettes culinaires!">
-    <meta name="color-scheme" content="dark light" />
+    <meta name="color-scheme" content="dark light">
     <meta name="robots" content="index, follow">
 
     <!-- Title -->
     <title>Les Petits Plats - Page de recherche</title>
 
     <!-- CSS -->
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="style.css">
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -29,11 +28,7 @@
     <script src="https://kit.fontawesome.com/342df027c2.js" crossorigin="anonymous"></script>
 
     <!-- Page logo -->
-    <link rel="icon" type="svg" href="assets/logos/icon-logo.svg" />
-
-    <!-- JS -->
-    <script defer src="./js/index.js"></script>
-
+    <link rel="icon" type="svg" href="assets/logos/icon-logo.svg">
 </head>
 
 <body>
@@ -53,17 +48,22 @@
 
         <section class="menusDeroulants">
             <div class="elementTri ingredients">
-            <p>Ingredients</p>
-            <i class="fa-solid fa-angle-up arrow"></i>
+            <p class="titreRecherche">Ingredients</p>
+            <input placeholder="Rechercher un ingrédient">
+            <div class="rotate"><i class="fa-solid fa-angle-up arrow"></i></div>
             </div>
             <div class="elementTri appareils">
-                <p>Appareils</p>
-                <i class="fa-solid fa-angle-up arrow"></i>
+                <p class="titreRecherche">Appareils</p>
+                <input placeholder="Rechercher un appareil"> 
+                <div class="rotate"><i class="fa-solid fa-angle-up arrow"></i></div>
             </div>
             <div class="elementTri ustensiles">
-                <p>Ustensiles</p>
-                <i class="fa-solid fa-angle-up arrow"></i>
+                <p class="titreRecherche">Ustensiles</p>
+                <input placeholder="Rechercher un ustensile"> 
+                <div class="rotate"><i class="fa-solid fa-angle-up arrow"></i></div>
             </div>
         </section>
     </main>
+    <script type="module" src="../assets/data/recipes.js"></script>
+    <script type="module" src="../JS/index.js"></script>
 </body>

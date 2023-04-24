@@ -54,6 +54,7 @@ header h1 {
   margin-bottom: 20px;
 }
 .menusDeroulants .elementTri {
+  cursor: pointer;
   width: 170px;
   height: 70px;
   border-radius: 5px;
@@ -65,8 +66,33 @@ header h1 {
   font-size: 18px;
   font-weight: bold;
 }
+.menusDeroulants .elementTri input {
+  display: none;
+  border: none;
+  outline: none;
+  background-color: transparent;
+  box-shadow: none;
+}
 .menusDeroulants .elementTri i {
   transform: rotate(180deg);
+}
+.menusDeroulants .elementTri .rotate {
+  transform: rotate(0deg);
+  transition: transform 0.3s ease;
+}
+.menusDeroulants .elementTri .rotate180 {
+  animation-name: rotate-back;
+  animation-duration: 0.3s;
+  animation-fill-mode: backwards;
+  transform: rotate(180deg);
+}
+@keyframes rotate-back {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(180deg);
+  }
 }
 .menusDeroulants .ingredients {
   background-color: #3282F7;
