@@ -55,8 +55,8 @@ header h1 {
   margin-bottom: 20px;
 }
 .menusDeroulants .elementTri {
-  position: relative;
   cursor: pointer;
+  position: relative;
   width: 180px;
   height: 70px;
   border-radius: 5px;
@@ -106,9 +106,6 @@ header h1 {
 .menusDeroulants .ingredients {
   background-color: #3282F7;
 }
-.menusDeroulants .ingredients p {
-  background-color: #3282F7;
-}
 .menusDeroulants .appareils {
   background-color: #68D9A4;
 }
@@ -117,7 +114,7 @@ header h1 {
 }
 .menusDeroulants .barreDeRechercheSecondaire {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
 }
 
-/*# sourceMappingURL=style.css.map */
+/*# sourceMappingURL=stylecss.map */

@@ -43,6 +43,7 @@ header{
 
         .inputRecherche::placeholder{
             font-size: 18px;
+            font-weight: bold;
             opacity: 25%;
         }
 
@@ -62,18 +63,25 @@ header{
     margin-top: 20px;
     margin-bottom: 20px;
 
-    .elementTri{
+    .elementTri{        
+        position: relative;
         cursor: pointer;
-        width: 170px;
+        width: 180px;
         height: 70px;
         border-radius: 5px;
         display: flex;
         flex-direction: row;
         align-items: center;
-        justify-content: space-around;
+        justify-content: space-between;
+        padding-left: 10px;
+        padding-right: 10px;
         margin-right: 20px;
         font-size: 18px;
         font-weight: bold;
+
+        .titreRecherche{
+            display: block;
+        }
 
         input{
             display: none;
@@ -88,6 +96,8 @@ header{
         }
         
         .rotate {
+            position: absolute;
+            right: 10px;
             transform: rotate(0deg);
             transition: transform 0.3s ease;
         }
@@ -107,6 +117,9 @@ header{
 
     .ingredients{
         background-color: $ingredients;
+        p{
+            background-color: $ingredients;
+        }
     }
 
     .appareils{
@@ -115,5 +128,10 @@ header{
 
     .ustensiles{
         background-color: $ustensiles;
+    }
+
+    .barreDeRechercheSecondaire{
+        display: flex;
+        flex-direction: column;
     }
 }
