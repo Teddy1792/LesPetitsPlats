@@ -69,6 +69,7 @@ header h1 {
   margin-right: 20px;
   font-size: 18px;
   font-weight: bold;
+  transition: width 0.3s ease;
 }
 .menusDeroulants .elementTri .titreRecherche {
   display: block;

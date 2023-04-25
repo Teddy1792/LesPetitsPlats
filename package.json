@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/Teddy1792/LesPetitsPlats/issues"
   },
-  "homepage": "https://github.com/Teddy1792/LesPetitsPlats#readme"
+  "homepage": "https://github.com/Teddy1792/LesPetitsPlats#readme",
+  "devDependencies": {
+    "eslint": "^8.39.0"
+  }
 }
