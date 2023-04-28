@@ -55,6 +55,45 @@ header{
     }
 }
 
+.tagsDisplay{
+    display: flex;
+
+    .selectedTags{
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+
+    .selectedIngredientTag{
+        background-color: $ingredients;
+    }
+
+    .selectedApplianceTag{
+        background-color: $appareils;
+    }
+
+    .selectedUstensilTag{
+        background-color: $ustensiles;
+    }
+
+    .selectedTag{
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        
+        border-radius: 5px;
+        padding: 10px;
+        height: 30px;
+        font-family: "lato";
+        margin: 10px;
+    }
+
+    img{
+        margin-left: 10px;
+        cursor: pointer;
+    }
+}
+
 .menusDeroulants{
     color: white;
     display: flex;
@@ -62,6 +101,69 @@ header{
     font-family: 'lato';
     margin-top: 20px;
     margin-bottom: 20px;
+
+    .barreDeRechercheSecondaire{
+        flex-direction: column;
+        border-radius: 5px;
+        margin: 5px;
+        height:fit-content;
+    }
+
+    .tagList{
+        column-count: 3;
+        padding: 10px;
+    }
+
+    .ingredientsTagStyle{
+        background-color: $ingredients;
+        border-radius: 5px;
+        max-width: 100%;
+        height: 450px;
+        width: 600px;
+        overflow-y: scroll;
+    }
+
+    .appliancesTagStyle{
+        background-color: $appareils;
+        border-radius: 5px;
+        max-width: 100%;
+        height: 400px;
+        width: 600px;
+        overflow-y: scroll;
+    }
+
+    .ustensilsTagStyle{
+        background-color: $ustensiles;
+        border-radius: 5px;
+        max-width: 100%;
+        height: 400px;
+        width: 600px;
+        overflow-y: scroll;
+    }
+
+    .ingredients{
+        background-color: $ingredients;
+    }
+
+    .ingredientTag{
+        cursor: pointer;
+    }
+
+    .appareils{
+        background-color: $appareils;
+    }
+
+    .applianceTag{
+        cursor: pointer;
+    }
+
+    .ustensiles{
+        background-color: $ustensiles;
+    }
+
+    .ustensilTag{
+        cursor: pointer;
+    }
 
     .elementTri{        
         position: relative;
@@ -114,25 +216,5 @@ header{
             0% { transform: rotate(0deg); }
             100% { transform: rotate(180deg); }
           }
-    }
-
-    .ingredients{
-        background-color: $ingredients;
-        p{
-            background-color: $ingredients;
-        }
-    }
-
-    .appareils{
-        background-color: $appareils;
-    }
-
-    .ustensiles{
-        background-color: $ustensiles;
-    }
-
-    .barreDeRechercheSecondaire{
-        display: flex;
-        flex-direction: column;
     }
 }

@@ -46,6 +46,38 @@ header h1 {
   top: 30%;
 }
 
+.tagsDisplay {
+  display: flex;
+}
+.tagsDisplay .selectedTags {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+.tagsDisplay .selectedIngredientTag {
+  background-color: #3282F7;
+}
+.tagsDisplay .selectedApplianceTag {
+  background-color: #68D9A4;
+}
+.tagsDisplay .selectedUstensilTag {
+  background-color: #ED6454;
+}
+.tagsDisplay .selectedTag {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  border-radius: 5px;
+  padding: 10px;
+  height: 30px;
+  font-family: "lato";
+  margin: 10px;
+}
+.tagsDisplay img {
+  margin-left: 10px;
+  cursor: pointer;
+}
+
 .menusDeroulants {
   color: white;
   display: flex;
@@ -53,6 +85,58 @@ header h1 {
   font-family: "lato";
   margin-top: 20px;
   margin-bottom: 20px;
+}
+.menusDeroulants .barreDeRechercheSecondaire {
+  flex-direction: column;
+  border-radius: 5px;
+  margin: 5px;
+  height: fit-content;
+}
+.menusDeroulants .tagList {
+  column-count: 3;
+  padding: 10px;
+}
+.menusDeroulants .ingredientsTagStyle {
+  background-color: #3282F7;
+  border-radius: 5px;
+  max-width: 100%;
+  height: 450px;
+  width: 600px;
+  overflow-y: scroll;
+}
+.menusDeroulants .appliancesTagStyle {
+  background-color: #68D9A4;
+  border-radius: 5px;
+  max-width: 100%;
+  height: 400px;
+  width: 600px;
+  overflow-y: scroll;
+}
+.menusDeroulants .ustensilsTagStyle {
+  background-color: #ED6454;
+  border-radius: 5px;
+  max-width: 100%;
+  height: 400px;
+  width: 600px;
+  overflow-y: scroll;
+}
+.menusDeroulants .ingredients {
+  background-color: #3282F7;
+}
+.menusDeroulants .ingredientTag {
+  cursor: pointer;
+}
+.menusDeroulants .appareils {
+  background-color: #68D9A4;
+}
+.menusDeroulants .applianceTag {
+  cursor: pointer;
+}
+.menusDeroulants .ustensiles {
+  background-color: #ED6454;
+}
+.menusDeroulants .ustensilTag {
+  cursor: pointer;
 }
 .menusDeroulants .elementTri {
   position: relative;
@@ -103,22 +187,6 @@ header h1 {
   100% {
     transform: rotate(180deg);
   }
-}
-.menusDeroulants .ingredients {
-  background-color: #3282F7;
-}
-.menusDeroulants .ingredients p {
-  background-color: #3282F7;
-}
-.menusDeroulants .appareils {
-  background-color: #68D9A4;
-}
-.menusDeroulants .ustensiles {
-  background-color: #ED6454;
-}
-.menusDeroulants .barreDeRechercheSecondaire {
-  display: flex;
-  flex-direction: column;
 }
 
 /*# sourceMappingURL=style.css.map */
