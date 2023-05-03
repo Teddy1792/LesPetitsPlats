@@ -79,18 +79,21 @@ header h1 {
 }
 
 .menusDeroulants {
+  position: absolute;
   color: white;
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
   font-family: "lato";
   margin-top: 20px;
-  margin-bottom: 20px;
+  margin-left: -4px;
 }
 .menusDeroulants .barreDeRechercheSecondaire {
   flex-direction: column;
   border-radius: 5px;
   margin: 5px;
   height: fit-content;
+  z-index: 3;
 }
 .menusDeroulants .tagList {
   column-count: 3;
@@ -187,6 +190,107 @@ header h1 {
   100% {
     transform: rotate(180deg);
   }
+}
+
+.recipeCards {
+  margin-top: 100px;
+  margin-left: -23px;
+  display: flex;
+  flex-wrap: wrap;
+  font-family: "lato";
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.recipeCards .recipeCard {
+  width: 380px;
+  height: 360px;
+  margin: 25px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.recipeCards .recipeCard .recipeCardImg {
+  height: 180px;
+  background-color: #C7BEBE;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+.recipeCards .recipeCard .recipeCardTxt {
+  height: 180px;
+  background-color: #E7E7E7;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  color: black;
+  box-sizing: border-box;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.recipeCards .recipeCard .recipeCardTxt .recipeCardTextTop {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  position: relative;
+}
+.recipeCards .recipeCard .recipeCardTxt .recipeCardTextTop .recipeName {
+  width: 70%;
+}
+.recipeCards .recipeCard .recipeCardTxt .recipeCardTextTop .recipeName h3 {
+  margin: 0px;
+  padding-top: 20px;
+  padding-left: 20px;
+  padding-bottom: 10px;
+  font-weight: 400;
+}
+.recipeCards .recipeCard .recipeCardTxt .recipeCardTextTop .recipteTime {
+  display: flex;
+  flex-direction: row;
+  flex-direction: row;
+  align-items: center;
+  margin-right: 25px;
+  margin-left: 5px;
+  position: absolute;
+  right: 0px;
+}
+.recipeCards .recipeCard .recipeCardTxt .recipeCardTextTop .recipteTime img {
+  margin: 5px;
+}
+.recipeCards .recipeCard .recipeCardTxt .recipeCardTextBottom {
+  display: flex;
+  flex-direction: row;
+  height: 115px;
+  width: 380px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.recipeCards .recipeCard .recipeCardTxt .recipeCardTextBottom .ingredientsText {
+  display: flex;
+  flex-direction: column;
+  margin-left: 20px;
+  margin-right: 0px;
+}
+.recipeCards .recipeCard .recipeCardTxt .recipeCardTextBottom .instructionsBox {
+  width: 160px;
+  margin-right: 20px;
+  margin-left: 10px;
+}
+.recipeCards .recipeCard .recipeCardTxt .recipeCardTextBottom .ingredientsText {
+  height: 115px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.recipeCards .recipeCard .recipeCardTxt .recipeCardTextBottom .ingredientsText .ingredientsList {
+  font-size: 12px;
+  margin: 0px;
+}
+.recipeCards .recipeCard .recipeCardTxt .recipeCardTextBottom .instructions {
+  font-family: Roboto;
+  font-size: 12px;
+  padding-left: 30px;
+  width: 85%;
+  margin-top: 0px;
+  height: 115px;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 /*# sourceMappingURL=style.css.map */
