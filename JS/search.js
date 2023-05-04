@@ -1,5 +1,8 @@
 import {recipes} from '../assets/data/recipes.js';
 import { createRecipeCards } from './DOMCreation.js';
+import { createIngredientsList } from './DOMCreation.js';
+import { createAppliancesList } from './DOMCreation.js';
+import { createUstensilsList } from './DOMCreation.js';
 
 function filteredByTitle(input) {
   return recipes.filter(recipe => recipe.name.toLowerCase().includes(input.toLowerCase()))
@@ -26,17 +29,17 @@ function filterRecipesByInput(input) {
   return filteredByInput;
 }
 
-export function MainSearchBar() {
+export function mainSearchBar() {
   const searchBar = document.querySelector(".inputRecherche");
+  let filteredByInput = [];
   searchBar.addEventListener('input', (event) => {
     if(event.target.value.length >= 3){
       const input = event.target.value;
-      const filteredByInput = filterRecipesByInput(input);
+      filteredByInput = filterRecipesByInput(input);
       createRecipeCards(filteredByInput);
+      createIngredientsList(filteredByInput);
+      createAppliancesList(filteredByInput);
+      createUstensilsList(filteredByInput);
     }
   });
 }
-
-
-//Le système recherche des recettes correspondant à l’entrée utilisateur dans : le titre de
-//la recette, la liste des ingrédients de la recette, la description de la recette.

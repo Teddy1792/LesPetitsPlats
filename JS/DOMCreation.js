@@ -86,9 +86,22 @@ export function createRecipeCards(recipes) {
 }
 
 //create taglists
-export function createIngredientsList (uniqueIngredients) {
-  const tagsContainers = document.querySelectorAll(".tagList");
-  const ingredientsContainer = tagsContainers[0];
+export function createIngredientsList (recipes) {
+  const ingredientsResearch = document.querySelector(".ingredientsResearch");
+  const ingredientsTagList = document.querySelector(".ingredientsTagList");
+  if(ingredientsTagList === null) {
+    const newingredientsResearch = document.createElement("div");
+    newingredientsResearch.classList.add("ingredientsTagList", "tagList", "ingredientsTagStyle");
+    ingredientsResearch.appendChild(newingredientsResearch);
+  }
+  else {
+    ingredientsResearch.removeChild(ingredientsTagList);
+    const newingredientsResearch = document.createElement("div");
+    newingredientsResearch.classList.add("ingredientsTagList", "tagList", "ingredientsTagStyle");
+    ingredientsResearch.appendChild(newingredientsResearch);
+  }
+  const ingredientsContainer = document.querySelector(".ingredientsTagList");
+  const uniqueIngredients = getIngredients(recipes);
   uniqueIngredients.forEach(ingredient => {
     const ingredientDiv = document.createElement("div");
     ingredientDiv.classList.add("ingredientTag");
@@ -100,9 +113,22 @@ export function createIngredientsList (uniqueIngredients) {
   ingredientsContainer.style.display = "none";
 }
 
-export function createAppliancesList (uniqueAppliances) {
-  const tagsContainers = document.querySelectorAll(".tagList");
-  const appliancesContainer = tagsContainers[1];
+export function createAppliancesList (recipes) {
+  const appliancesResearch = document.querySelector(".appliancesResearch");
+  const appliancesTagList = document.querySelector(".appliancesTagList");
+  if(appliancesTagList === null) {
+    const newAppliancesResearch = document.createElement("div");
+    newAppliancesResearch.classList.add("appliancesTagList", "tagList", "appliancesTagStyle");
+    appliancesResearch.appendChild(newAppliancesResearch);
+  }
+  else {
+    appliancesResearch.removeChild(appliancesTagList);
+    const newAppliancesResearch = document.createElement("div");
+    newAppliancesResearch.classList.add("appliancesTagList", "tagList", "appliancesTagStyle");
+    appliancesResearch.appendChild(newAppliancesResearch);
+  }
+  const appliancesContainer = document.querySelector(".appliancesTagList");
+  const uniqueAppliances = getAppliances(recipes);
   uniqueAppliances.forEach(appliance => {
     const appliancesDiv = document.createElement("div");
     appliancesDiv.classList.add("applianceTag");
@@ -114,9 +140,22 @@ export function createAppliancesList (uniqueAppliances) {
   });
 }
 
-export function createUstensilsList (uniqueUstensils) {
-  const tagsContainers = document.querySelectorAll(".tagList");
-  const ustensilsContainer = tagsContainers[2];
+export function createUstensilsList (filteredrecipes) {
+  const ustensilsResearch = document.querySelector(".ustensilsResearch");
+  const ustensilsTagList = document.querySelector(".ustensilsTagList");
+  if(ustensilsTagList === null) {
+    const newUstensilsResearch = document.createElement("div");
+    newUstensilsResearch.classList.add("ustensilsTagList", "tagList", "ustensilsTagStyle");
+    ustensilsResearch.appendChild(newUstensilsResearch);
+  }
+  else {
+    ustensilsResearch.removeChild(ustensilsTagList);
+    const newUstensilsResearch = document.createElement("div");
+    newUstensilsResearch.classList.add("ustensilsTagList", "tagList", "ustensilsTagStyle");
+    ustensilsResearch.appendChild(newUstensilsResearch);
+  }
+  const ustensilsContainer = document.querySelector(".ustensilsTagList");
+  const uniqueUstensils = getUstensils(filteredrecipes);
   uniqueUstensils.forEach(ustensil => {
     const ustensilDiv = document.createElement("div");
     ustensilDiv.classList.add("ustensilTag");
@@ -127,6 +166,21 @@ export function createUstensilsList (uniqueUstensils) {
     ustensilsContainer.style.display = "none";
   });
 }
+
+export function getIngredients (filteredrecipes) {
+  const ingredients = filteredrecipes.flatMap(recipe => recipe.ingredients.map(ingredient => ingredient.ingredient));
+  return Array.from(new Set(ingredients));
+}
+
+export function getAppliances (filteredrecipes) {
+  const appliances = filteredrecipes.map(recipe => recipe.appliance);
+  return Array.from(new Set(appliances));
+ }
+
+export function getUstensils(filteredrecipes) {
+  const ustensils = filteredrecipes.flatMap(recipe => recipe.ustensils);
+  return Array.from(new Set(ustensils));
+ }
 
 //create event to add tags to the search
 export function addIngredientsTags() {
@@ -230,18 +284,3 @@ document.addEventListener('click', function(event) {
       tagsList[2].classList.remove("ustensilsTagStyle");
     }});
 }
-
-export function getIngredients (recipes) {
-  const ingredients = recipes.flatMap(recipe => recipe.ingredients.map(ingredient => ingredient.ingredient));
-  return Array.from(new Set(ingredients));
-}
-
-export function getAppliances (recipes) {
-  const appliances = recipes.map(recipe => recipe.appliance);
-  return Array.from(new Set(appliances));
- }
-
-export function getUstensils(recipes) {
-  const ustensils = recipes.flatMap(recipe => recipe.ustensils);
-  return Array.from(new Set(ustensils));
- }
