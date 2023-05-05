@@ -198,8 +198,7 @@ header h1 {
   font-size: 18px;
   font-family: "lato";
   color: #D04F4F;
-  position: absolute;
-  top: 50%;
+  margin-top: 120px;
 }
 
 .recipeCards {
