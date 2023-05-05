@@ -192,6 +192,16 @@ header h1 {
   }
 }
 
+.errorMessage {
+  display: none;
+  font-weight: bolder;
+  font-size: 18px;
+  font-family: "lato";
+  color: #D04F4F;
+  position: absolute;
+  top: 50%;
+}
+
 .recipeCards {
   margin-top: 100px;
   margin-left: -23px;

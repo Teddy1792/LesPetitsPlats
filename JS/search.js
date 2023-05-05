@@ -32,14 +32,35 @@ function filterRecipesByInput(input) {
 export function mainSearchBar() {
   const searchBar = document.querySelector(".inputRecherche");
   let filteredByInput = [];
+  const errorMessageBox = document.createElement("div");
+  errorMessageBox.classList.add("errorMessage");
+  const errorMessageText = document.createElement("p");
+  errorMessageText.innerText = "Aucune recette ne correspond à votre critère... vous pouvez chercher « tarte aux pommes », « poisson », etc.";
+  errorMessageBox.append(errorMessageText);
+  document.querySelector("main").append(errorMessageBox);
   searchBar.addEventListener('input', (event) => {
     if(event.target.value.length >= 3){
+      document.querySelector(".recipeCards").style.display = "block";
+      errorMessageBox.style.display = "none";
       const input = event.target.value;
       filteredByInput = filterRecipesByInput(input);
-      createRecipeCards(filteredByInput);
-      createIngredientsList(filteredByInput);
-      createAppliancesList(filteredByInput);
-      createUstensilsList(filteredByInput);
+      if(filteredByInput.length >= 1){
+        createRecipeCards(filteredByInput);
+        createIngredientsList(filteredByInput);
+        createAppliancesList(filteredByInput);
+        createUstensilsList(filteredByInput);
+      }
+      else{
+        errorMessageBox.style.display = "block";
+        document.querySelector(".recipeCards").style.display = "none";
+      }
+    }
+    else{
+      errorMessageBox.style.display = "none";
+      createRecipeCards(recipes);
+      createIngredientsList(recipes);
+      createAppliancesList(recipes);
+      createUstensilsList(recipes);
     }
   });
 }

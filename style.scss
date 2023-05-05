@@ -222,7 +222,17 @@ header{
     }
 }
 
-.recipeCards{
+.errorMessage {
+    display: none;
+    font-weight: bolder;
+    font-size: 18px;
+    font-family: "lato";
+    color: $orangeTitle;
+    position: absolute;
+    top: 50%;
+}
+
+.recipeCards {
     margin-top: 100px;
     margin-left: -23px;
     display: flex;
@@ -231,14 +241,14 @@ header{
     overflow:hidden;
     text-overflow: ellipsis;
 
-    .recipeCard{
+    .recipeCard {
         width: 380px;
         height: 360px;
         margin: 25px;
         overflow: hidden;
         text-overflow: ellipsis;
 
-        .recipeCardImg{
+        .recipeCardImg {
             height: 180px;
             background-color: $recipeCardImg;
             border-top-left-radius: 5px;
