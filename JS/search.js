@@ -3,12 +3,17 @@ import { createRecipeCards } from './DOMCreation.js';
 import { createIngredientsList } from './DOMCreation.js';
 import { createAppliancesList } from './DOMCreation.js';
 import { createUstensilsList } from './DOMCreation.js';
+import { addIngredientsTags } from './DOMCreation.js';
+import { addAppliancesTags } from './DOMCreation.js';
+import { addUstensilsTags } from './DOMCreation.js';
+
+let recipesList = recipes;
 
 function filteredByTitle(input) {
   return recipes.filter(recipe => recipe.name.toLowerCase().includes(input.toLowerCase()))
 }
 
-function filteredByIngredients(input) {
+export function filteredByIngredients(input) {
   return recipes.filter(recipe => {
     return recipe.ingredients.some(ingredient => {
       return ingredient.ingredient.toLowerCase().includes(input.toLowerCase());
@@ -49,10 +54,15 @@ export function mainSearchBar() {
         createIngredientsList(filteredByInput);
         createAppliancesList(filteredByInput);
         createUstensilsList(filteredByInput);
+        addIngredientsTags();
+        addAppliancesTags();
+        addUstensilsTags();
+        recipesList = filteredByInput;
       }
       else{
         errorMessageBox.style.display = "block";
         document.querySelector(".recipeCards").style.display = "none";
+        recipesList = [];
       }
     }
     else{
@@ -61,6 +71,9 @@ export function mainSearchBar() {
       createIngredientsList(recipes);
       createAppliancesList(recipes);
       createUstensilsList(recipes);
+      recipesList = recipes;
     }
   });
 }
+
+//search by tags

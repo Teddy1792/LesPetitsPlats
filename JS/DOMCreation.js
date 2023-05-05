@@ -1,3 +1,5 @@
+import { filteredByIngredients } from './search.js';
+
 //create recipe cards
 export function createRecipeCards(recipes) {
   const recipeCards = document.querySelector(".recipeCards");
@@ -89,7 +91,7 @@ export function createRecipeCards(recipes) {
 export function createIngredientsList (recipes) {
   const ingredientsResearch = document.querySelector(".ingredientsResearch");
   const ingredientsTagList = document.querySelector(".ingredientsTagList");
-  if(ingredientsTagList === null) {
+  if(document.querySelector(".ingredientsTagList") === null) {
     const newingredientsResearch = document.createElement("div");
     newingredientsResearch.classList.add("ingredientsTagList", "tagList", "ingredientsTagStyle");
     ingredientsResearch.appendChild(newingredientsResearch);
@@ -183,10 +185,10 @@ export function getUstensils(filteredrecipes) {
  }
 
 //create event to add tags to the search
-export function addIngredientsTags() {
+export function addIngredientsTags(selectedTag) {
   const ingredientTags = document.querySelectorAll(".ingredientTag");
   ingredientTags.forEach(ingredientTag => {
-    ingredientTag.addEventListener('click', () => {
+    ingredientTag.addEventListener('click', (event) => {
       const SelectedIngredientTag = document.createElement("div");
       SelectedIngredientTag.classList.add("selectedTag");
       SelectedIngredientTag.classList.add("selectedIngredientTag");
@@ -196,7 +198,14 @@ export function addIngredientsTags() {
       closingButton.src = "../assets/logos/close-button.svg";
       SelectedIngredientTag.append(closingButton);
       document.querySelector(".selectedTags").append(SelectedIngredientTag);
-      //create delete function
+
+      //generate the ingredients list anew
+      const newIngredientsList = filteredByIngredients(event.target.innerText);
+      console.log(newIngredientsList);
+          //now I need to cross this list with the mainSearchResult and other tags
+          //+do the same for appliances and ustensils
+
+      //create delete event
       closingButton.addEventListener('click', () => {
         closingButton.parentNode.remove(SelectedIngredientTag);
       });
