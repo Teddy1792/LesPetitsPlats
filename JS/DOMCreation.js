@@ -1,4 +1,5 @@
-import { filteredByIngredients } from './search.js';
+import { searchByTags } from './search.js';
+import { deleteTag } from './search.js';
 
 //create recipe cards
 export function createRecipeCards(recipes) {
@@ -88,7 +89,7 @@ export function createRecipeCards(recipes) {
 }
 
 //create taglists
-export function createIngredientsList (recipes) {
+export function createIngredientsList (ingredients) {
   const ingredientsResearch = document.querySelector(".ingredientsResearch");
   const ingredientsTagList = document.querySelector(".ingredientsTagList");
   if(document.querySelector(".ingredientsTagList") === null) {
@@ -103,8 +104,7 @@ export function createIngredientsList (recipes) {
     ingredientsResearch.appendChild(newingredientsResearch);
   }
   const ingredientsContainer = document.querySelector(".ingredientsTagList");
-  const uniqueIngredients = getIngredients(recipes);
-  uniqueIngredients.forEach(ingredient => {
+  ingredients.forEach(ingredient => {
     const ingredientDiv = document.createElement("div");
     ingredientDiv.classList.add("ingredientTag");
     const ingredientParagraph = document.createElement("p");
@@ -115,7 +115,7 @@ export function createIngredientsList (recipes) {
   ingredientsContainer.style.display = "none";
 }
 
-export function createAppliancesList (recipes) {
+export function createAppliancesList (appliances) {
   const appliancesResearch = document.querySelector(".appliancesResearch");
   const appliancesTagList = document.querySelector(".appliancesTagList");
   if(appliancesTagList === null) {
@@ -130,8 +130,7 @@ export function createAppliancesList (recipes) {
     appliancesResearch.appendChild(newAppliancesResearch);
   }
   const appliancesContainer = document.querySelector(".appliancesTagList");
-  const uniqueAppliances = getAppliances(recipes);
-  uniqueAppliances.forEach(appliance => {
+  appliances.forEach(appliance => {
     const appliancesDiv = document.createElement("div");
     appliancesDiv.classList.add("applianceTag");
     const applianceParagraph = document.createElement("p");
@@ -142,7 +141,7 @@ export function createAppliancesList (recipes) {
   });
 }
 
-export function createUstensilsList (filteredrecipes) {
+export function createUstensilsList (ustensils) {
   const ustensilsResearch = document.querySelector(".ustensilsResearch");
   const ustensilsTagList = document.querySelector(".ustensilsTagList");
   if(ustensilsTagList === null) {
@@ -157,8 +156,7 @@ export function createUstensilsList (filteredrecipes) {
     ustensilsResearch.appendChild(newUstensilsResearch);
   }
   const ustensilsContainer = document.querySelector(".ustensilsTagList");
-  const uniqueUstensils = getUstensils(filteredrecipes);
-  uniqueUstensils.forEach(ustensil => {
+  ustensils.forEach(ustensil => {
     const ustensilDiv = document.createElement("div");
     ustensilDiv.classList.add("ustensilTag");
     const ustensilParagraph = document.createElement("p");
@@ -185,7 +183,7 @@ export function getUstensils(filteredrecipes) {
  }
 
 //create event to add tags to the search
-export function addIngredientsTags(selectedTag) {
+export function addIngredientsTags() {
   const ingredientTags = document.querySelectorAll(".ingredientTag");
   ingredientTags.forEach(ingredientTag => {
     ingredientTag.addEventListener('click', (event) => {
@@ -199,24 +197,43 @@ export function addIngredientsTags(selectedTag) {
       SelectedIngredientTag.append(closingButton);
       document.querySelector(".selectedTags").append(SelectedIngredientTag);
 
+      //call research function
+      const ingredientTags = document.querySelectorAll(".selectedIngredientTag");
+      createRecipeCards(searchByTags(ingredientTags));
+
+      //delete selected tag from the list
+      const exclude = event.target.parentNode.innerText;
+      const tagsList = document.querySelectorAll(".ingredientTag");
+      const tagsListArray = Array.from(tagsList).flatMap((p) => p.textContent.trim());
+      const filteredArray = tagsListArray.filter(tag => !tag.includes(exclude));
       //generate the ingredients list anew
-      const newIngredientsList = filteredByIngredients(event.target.innerText);
-      console.log(newIngredientsList);
-          //now I need to cross this list with the mainSearchResult and other tags
-          //+do the same for appliances and ustensils
+      document.querySelector(".ingredientsTagList").innerHTML="";
+      createIngredientsList(filteredArray);
+      addIngredientsTags();
 
       //create delete event
       closingButton.addEventListener('click', () => {
         closingButton.parentNode.remove(SelectedIngredientTag);
+        //add back the tag to the list
+        const include = event.target.parentNode.innerText;
+        const tagsList = document.querySelectorAll(".ingredientTag");
+        const tagsListArray = Array.from(tagsList).flatMap((p) => p.textContent.trim());
+        tagsListArray.unshift(include);
+              //generate the ingredients list anew
+        document.querySelector(".ingredientsTagList").innerHTML="";
+        createIngredientsList(tagsListArray);
+        addIngredientsTags();
+        deleteTag();
       });
     });
   });
 }
 
+
 export function addAppliancesTags() {
   const applianceTags = document.querySelectorAll(".applianceTag");
   applianceTags.forEach(applianceTag => {
-    applianceTag.addEventListener('click', () => {
+    applianceTag.addEventListener('click', (event) => {
       const SelectedApplianceTag = document.createElement("div");
       SelectedApplianceTag.classList.add("selectedTag");
       SelectedApplianceTag.classList.add("selectedApplianceTag");
@@ -227,9 +244,33 @@ export function addAppliancesTags() {
       SelectedApplianceTag.append(closingButton);
       document.querySelector(".selectedTags").append(SelectedApplianceTag);
 
-      //create delete function
+      //call research function
+      const ApplianceTags = document.querySelectorAll(".selectedApplianceTag");
+      createRecipeCards(searchByTags(ApplianceTags));
+
+      //delete selected tag from the list
+      const exclude = event.target.parentNode.innerText;
+      const tagsList = document.querySelectorAll(".applianceTag");
+      const tagsListArray = Array.from(tagsList).flatMap((p) => p.textContent.trim());
+      const filteredArray = tagsListArray.filter(tag => !tag.includes(exclude));
+      //generate the appliances list anew
+      document.querySelector(".appliancesTagList").innerHTML="";
+      createAppliancesList(filteredArray);
+      addAppliancesTags();
+
+      //create delete event
       closingButton.addEventListener('click', () => {
         closingButton.parentNode.remove(SelectedApplianceTag);
+        //add back the tag to the list
+        const include = event.target.parentNode.innerText;
+        const tagsList = document.querySelectorAll(".applianceTag");
+        const tagsListArray = Array.from(tagsList).flatMap((p) => p.textContent.trim());
+        tagsListArray.unshift(include);
+              //generate the ingredients list anew
+        document.querySelector(".appliancesTagList").innerHTML="";
+        createAppliancesList(tagsListArray);
+        addAppliancesTags();
+        deleteTag();
       });
     });
   });
@@ -238,7 +279,7 @@ export function addAppliancesTags() {
 export function addUstensilsTags() {
   const ustensilsTags = document.querySelectorAll(".ustensilTag");
   ustensilsTags.forEach(ustensilTag => {
-    ustensilTag.addEventListener('click', () => {
+    ustensilTag.addEventListener('click', (event) => {
       const SelectedUstensilsTag = document.createElement("div");
       SelectedUstensilsTag.classList.add("selectedTag");
       SelectedUstensilsTag.classList.add("selectedUstensilTag");
@@ -249,9 +290,33 @@ export function addUstensilsTags() {
       SelectedUstensilsTag.append(closingButton);
       document.querySelector(".selectedTags").append(SelectedUstensilsTag);
 
-      //create delete function
+      //call research function
+      const UstensilsTags = document.querySelectorAll(".selectedUstensilTag");
+      createRecipeCards(searchByTags(UstensilsTags));
+
+      //delete selected tag from the list
+      const exclude = event.target.parentNode.innerText;
+      const tagsList = document.querySelectorAll(".ustensilTag");
+      const tagsListArray = Array.from(tagsList).flatMap((p) => p.textContent.trim());
+      const filteredArray = tagsListArray.filter(tag => !tag.includes(exclude));
+      //generate the ustensils list anew
+      document.querySelector(".ustensilsTagList").innerHTML="";
+      createUstensilsList(filteredArray);
+      addUstensilsTags();
+
+      //create delete event
       closingButton.addEventListener('click', () => {
         closingButton.parentNode.remove(SelectedUstensilsTag);
+        //add back the tag to the list
+        const include = event.target.parentNode.innerText;
+        const tagsList = document.querySelectorAll(".ustensilTag");
+        const tagsListArray = Array.from(tagsList).flatMap((p) => p.textContent.trim());
+        tagsListArray.unshift(include);
+              //generate the ingredients list anew
+        document.querySelector(".ustensilsTagList").innerHTML="";
+        createUstensilsList(tagsListArray);
+        addUstensilsTags();
+        deleteTag();
       });
     });
   });
