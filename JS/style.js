@@ -1,5 +1,6 @@
 //create animations for the arrows
-export function rotateArrow(elementTris) {
+export function rotateArrow() {
+  const elementTris = document.querySelectorAll(".elementTri");
   elementTris.forEach(elementTri => {
     const arrowRotate = elementTri.querySelector('.rotate');
     elementTri.addEventListener('click', () => {
@@ -16,7 +17,8 @@ export function rotateArrow(elementTris) {
 }
 
   //make inputs available
-  export function accessInputs (elementTris) {
+  export function accessInputs () {
+    const elementTris = document.querySelectorAll(".elementTri");
     elementTris.forEach(elementTri => {
       const inputField = elementTri.querySelector("input");
       const titreRecherche = elementTri.querySelector(".titreRecherche");
@@ -37,3 +39,28 @@ export function rotateArrow(elementTris) {
       });
     });
   }
+
+  export function generateTagSearch() {
+    createTagSearch("ingredients");
+    createTagSearch("appliance");
+    createTagSearch("ustensils");
+  }
+
+  function createTagSearch(attribute) {
+    const tagsContainer = document.querySelector(`.${attribute}Research`);
+    const tagsList = document.querySelector(`.${attribute}Research`);
+
+    tagsContainer.addEventListener('click', () => {
+      document.querySelector(`.${attribute}TagList`).style.display = "block";
+      tagsList.classList.add(`${attribute}TagStyle`);
+    });
+
+    document.addEventListener('click', function(event) {
+      const isClickInside = tagsContainer.contains(event.target);
+      if (!isClickInside) {
+        document.querySelector(`.${attribute}TagList`).style.display = "none";
+        tagsList.classList.remove(`${attribute}TagStyle`);
+      }
+    });
+
+}

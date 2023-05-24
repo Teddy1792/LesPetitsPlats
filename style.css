@@ -54,13 +54,13 @@ header h1 {
   flex-direction: row;
   flex-wrap: wrap;
 }
-.tagsDisplay .selectedIngredientTag {
+.tagsDisplay .selectedingredientsTag {
   background-color: #3282F7;
 }
-.tagsDisplay .selectedApplianceTag {
+.tagsDisplay .selectedapplianceTag {
   background-color: #68D9A4;
 }
-.tagsDisplay .selectedUstensilTag {
+.tagsDisplay .selectedustensilsTag {
   background-color: #ED6454;
 }
 .tagsDisplay .selectedTag {
@@ -107,7 +107,7 @@ header h1 {
   width: 600px;
   overflow-y: scroll;
 }
-.menusDeroulants .appliancesTagStyle {
+.menusDeroulants .applianceTagStyle {
   background-color: #68D9A4;
   border-radius: 5px;
   max-width: 100%;
@@ -207,15 +207,11 @@ header h1 {
   display: flex;
   flex-wrap: wrap;
   font-family: "lato";
-  overflow: hidden;
-  text-overflow: ellipsis;
 }
 .recipeCards .recipeCard {
   width: 380px;
   height: 360px;
   margin: 25px;
-  overflow: hidden;
-  text-overflow: ellipsis;
 }
 .recipeCards .recipeCard .recipeCardImg {
   height: 180px;
@@ -268,36 +264,38 @@ header h1 {
   flex-direction: row;
   height: 115px;
   width: 380px;
-  overflow: hidden;
-  text-overflow: ellipsis;
 }
 .recipeCards .recipeCard .recipeCardTxt .recipeCardTextBottom .ingredientsText {
   display: flex;
   flex-direction: column;
   margin-left: 20px;
   margin-right: 0px;
-}
-.recipeCards .recipeCard .recipeCardTxt .recipeCardTextBottom .instructionsBox {
-  width: 160px;
-  margin-right: 20px;
-  margin-left: 10px;
-}
-.recipeCards .recipeCard .recipeCardTxt .recipeCardTextBottom .ingredientsText {
-  height: 115px;
   overflow: hidden;
   text-overflow: ellipsis;
+  white-space: nowrap;
+  display: -webkit-box;
+  -webkit-line-clamp: 5;
+  -webkit-box-orient: vertical;
 }
 .recipeCards .recipeCard .recipeCardTxt .recipeCardTextBottom .ingredientsText .ingredientsList {
   font-size: 12px;
   margin: 0px;
 }
+.recipeCards .recipeCard .recipeCardTxt .recipeCardTextBottom .instructionsBox {
+  width: 160px;
+  margin-right: 20px;
+  margin-left: 10px;
+  overflow: hidden;
+}
 .recipeCards .recipeCard .recipeCardTxt .recipeCardTextBottom .instructions {
-  font-family: Roboto;
+  font-family: Roboto, sans-serif;
   font-size: 12px;
   padding-left: 30px;
-  width: 85%;
-  margin-top: 0px;
-  height: 115px;
+  margin-top: 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 6;
+  -webkit-box-orient: vertical;
+  line-height: 1.4;
   overflow: hidden;
   text-overflow: ellipsis;
 }

@@ -64,15 +64,15 @@ header{
         flex-wrap: wrap;
     }
 
-    .selectedIngredientTag{
+    .selectedingredientsTag{
         background-color: $ingredients;
     }
 
-    .selectedApplianceTag{
+    .selectedapplianceTag{
         background-color: $appareils;
     }
 
-    .selectedUstensilTag{
+    .selectedustensilsTag{
         background-color: $ustensiles;
     }
 
@@ -126,7 +126,7 @@ header{
         overflow-y: scroll;
     }
 
-    .appliancesTagStyle{
+    .applianceTagStyle{
         background-color: $appareils;
         border-radius: 5px;
         max-width: 100%;
@@ -237,15 +237,11 @@ header{
     display: flex;
     flex-wrap: wrap;
     font-family: "lato";
-    overflow:hidden;
-    text-overflow: ellipsis;
 
     .recipeCard {
         width: 380px;
         height: 360px;
         margin: 25px;
-        overflow: hidden;
-        text-overflow: ellipsis;
 
         .recipeCardImg {
             height: 180px;
@@ -303,26 +299,18 @@ header{
                 flex-direction: row;
                 height: 115px;
                 width: 380px;
-                overflow: hidden;
-                text-overflow: ellipsis;
 
                 .ingredientsText{
                     display: flex;
                     flex-direction: column;
                     margin-left: 20px;
                     margin-right: 0px;
-                }
-
-                .instructionsBox{
-                    width: 160px;
-                    margin-right: 20px;
-                    margin-left: 10px;
-                }
-
-                .ingredientsText{
-                    height: 115px;
-                    overflow:hidden;
+                    overflow: hidden;
                     text-overflow: ellipsis;
+                    white-space: nowrap;
+                    display: -webkit-box;
+                    -webkit-line-clamp: 5;
+                    -webkit-box-orient: vertical;
 
                     .ingredientsList{
                         font-size: 12px;
@@ -330,16 +318,26 @@ header{
                     }
                 }
 
-                .instructions{
-                    font-family: Roboto;
+                .instructionsBox{
+                    width: 160px;
+                    margin-right: 20px;
+                    margin-left: 10px;
+                    overflow: hidden;
+                }
+                
+                .instructions {
+                    font-family: Roboto, sans-serif;
                     font-size: 12px;
                     padding-left: 30px;
-                    width: 85%;
-                    margin-top: 0px;
-                    height: 115px;
-                    overflow:hidden;
+                    margin-top: 0;
+                    display: -webkit-box;
+                    -webkit-line-clamp: 6;
+                    -webkit-box-orient: vertical;
+                    line-height: 1.4;
+                    overflow: hidden;
                     text-overflow: ellipsis;
-                }
+                  }
+                  
             }
         }
     }
