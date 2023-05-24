@@ -14,6 +14,9 @@ function init () {
     generateTagLists();
     createRecipeCards(recipes);
     mainSearch();
+    inputSearchThroughTags("ingredients");
+    inputSearchThroughTags("appliance");
+    inputSearchThroughTags("ustensils");
 }
 
 init();
@@ -60,7 +63,12 @@ function createTagsListInTheDOM(tagList, attribute) {
   }
   //create tag list
   const container = document.querySelector(`.${attribute}TagList`);
-  tagList.forEach(tag => {
+
+  //check for existing tag and delete them from the list
+  const selectedTags = Array.from(document.querySelectorAll(`.selected${attribute}Tag`)).map(tag => tag.innerText);
+  const newTagLists = tagList.filter((tag) => !selectedTags.includes(tag));
+
+  newTagLists.forEach(tag => {
     const tagDiv = document.createElement("div");
     tagDiv.classList.add(`${attribute}Tag`);
     const tagParagraph = document.createElement("p");
@@ -96,7 +104,6 @@ function selectTag(tag, attribute) {
       });
       //update the recipes list
       createRecipeCards(updateRecipesList());
-      console.log(activeRecipes);
 
       //update the taglists
       generateTagLists();
@@ -113,7 +120,6 @@ function updateRecipesList() {
 
     const finalRecipesList = filteredRecipes.filter(recipe => inputRecipes.includes(recipe));
     activeRecipes = finalRecipesList;
-    console.log(activeRecipes)
     return finalRecipesList;
   }
 
@@ -150,8 +156,6 @@ function updateRecipesList() {
         filteredRecipesByAppliance.includes(recipe) &&
         filteredRecipesByUstensils.includes(recipe)
       );});
-      console.log(filteredRecipes);
-
     return filteredRecipes;
     //console.log(filterRecipes);
   }
@@ -307,4 +311,35 @@ function mainSearch(){
             generateTagLists();
         }
     });
+}
+
+function inputSearchThroughTags(attribute) {
+  const inputSearch = document.querySelector(`.${attribute}Input`);
+  inputSearch.addEventListener('input', () => {
+    const tagList = createTagArray(activeRecipes, attribute);
+    console.log(tagList);
+    const filteredTexts = tagList.filter(text => text.includes(inputSearch.value));
+    createTagsListInTheDOMFromTagSearch(filteredTexts, attribute);
+  });
+}
+
+function createTagsListInTheDOMFromTagSearch(tagList, attribute) {
+  const researchContainer = document.querySelector(`.${attribute}Research`);
+  const tagListContainer = document.querySelector(`.${attribute}TagList`);
+  researchContainer.removeChild(tagListContainer);
+  const newTagListContainer = document.createElement("div");
+  newTagListContainer.classList.add(`${attribute}TagList`, "tagList", `${attribute}TagStyle`);
+  researchContainer.appendChild(newTagListContainer);
+  //create tag list
+  const container = document.querySelector(`.${attribute}TagList`);
+  tagList.forEach(tag => {
+    const tagDiv = document.createElement("div");
+    tagDiv.classList.add(`${attribute}Tag`);
+    const tagParagraph = document.createElement("p");
+    tagParagraph.innerText = tag;
+    tagDiv.appendChild(tagParagraph);
+    container.appendChild(tagDiv);
+    //create event listener to add tag to the active tag list
+    selectTag(tagDiv, attribute);
+  });
 }

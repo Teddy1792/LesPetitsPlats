@@ -62,5 +62,4 @@ export function rotateArrow() {
         tagsList.classList.remove(`${attribute}TagStyle`);
       }
     });
-
 }
