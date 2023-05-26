@@ -161,33 +161,46 @@ function updateRecipesList() {
   }
 
   function filterRecipesByInput(input) {
-    const filteredRecipes = recipes.flatMap(recipe => {
-      const recipeAttributes = Object.values(recipe);
-      for (const attribute of recipeAttributes) {
+    var filteredRecipes = [];
+    for (var i = 0; i < recipes.length; i++) {
+      var recipe = recipes[i];
+      var recipeAttributes = Object.values(recipe);
+      var shouldInclude = false;
+      for (var j = 0; j < recipeAttributes.length; j++) {
+        var attribute = recipeAttributes[j];
         if (typeof attribute === 'string' && attribute.toLowerCase().includes(input.toLowerCase())) {
-          return recipe;
+          shouldInclude = true;
+          break;
         }
         if (Array.isArray(attribute)) {
-          for (const item of attribute) {
+          for (var k = 0; k < attribute.length; k++) {
+            var item = attribute[k];
             if (typeof item === 'string' && item.toLowerCase().includes(input.toLowerCase())) {
-              return recipe;
+              shouldInclude = true;
+              break;
             }
             if (item && typeof item === 'object') {
-              const nestedValues = Object.values(item);
-              for (const nestedValue of nestedValues) {
+              var nestedValues = Object.values(item);
+              for (var l = 0; l < nestedValues.length; l++) {
+                var nestedValue = nestedValues[l];
                 if (typeof nestedValue === 'string' && nestedValue.toLowerCase().includes(input.toLowerCase())) {
-                  return recipe;
+                  shouldInclude = true;
+                  break;
                 }
               }
             }
           }
         }
+        if (shouldInclude) {
+          break;
+        }
       }
-      return [];
-    });
+      if (shouldInclude) {
+        filteredRecipes.push(recipe);
+      }
+    }
     return filteredRecipes;
   }
-
 
   function createRecipeCards(recipes) {
     const recipeCards = document.querySelector(".recipeCards");
@@ -275,6 +288,7 @@ function updateRecipesList() {
     });
   }
 
+//search algorithm with native loops
 function mainSearch(){
     const searchBar = document.querySelector(".inputRecherche");
     const errorMessageBox = document.createElement("div");
